@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # bootstrap.sh — One-time setup for consuming repos.
 #
-# Downloads the shared ruff-defaults.toml and a starter .pre-commit-config.yaml
-# into the repo root, and wires the extend directive into pyproject.toml.
+# Downloads the shared ruff-defaults.toml, Makefile.consumer, and a starter
+# .pre-commit-config.yaml into the repo root, and wires the extend directive
+# into pyproject.toml.
 #
 # Usage:
 #   curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/bootstrap.sh | bash
@@ -19,6 +20,9 @@ echo "Fetching shared pre-commit baseline..."
 
 curl -sSLf "$BASE_URL/ruff-defaults.toml" -o ruff-defaults.toml
 echo "  → ruff-defaults.toml"
+
+curl -sSLf "$BASE_URL/Makefile.consumer" -o Makefile.consumer
+echo "  → Makefile.consumer"
 
 if [ ! -f ".pre-commit-config.yaml" ]; then
     curl -sSLf "$BASE_URL/.pre-commit-config.example.yaml" -o .pre-commit-config.yaml
@@ -55,5 +59,5 @@ else
 fi
 
 echo ""
-echo "Done. Commit ruff-defaults.toml and .pre-commit-config.yaml, then run:"
+echo "Done. Commit ruff-defaults.toml, Makefile.consumer, and .pre-commit-config.yaml, then run:"
 echo "  pre-commit install"

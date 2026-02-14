@@ -26,9 +26,10 @@ Run the bootstrap script in any Python repo:
 curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/bootstrap.sh | bash
 ```
 
-This downloads `ruff-defaults.toml`, creates a starter
-`.pre-commit-config.yaml` if one doesn't exist, and tells you what to add
-to `pyproject.toml`. The only required change is the `extend` directive:
+This downloads `ruff-defaults.toml`, `Makefile.consumer`, and creates a
+starter `.pre-commit-config.yaml` if one doesn't exist. It also tells you
+what to add to `pyproject.toml`. The only required change is the `extend`
+directive:
 
 ```toml
 [tool.ruff]
