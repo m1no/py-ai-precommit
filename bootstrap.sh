@@ -17,11 +17,11 @@ PYPROJECT="pyproject.toml"
 # ── Download shared configs ──────────────────────────────────────────────────
 echo "Fetching shared pre-commit baseline..."
 
-curl -sSL "$BASE_URL/ruff-defaults.toml" -o ruff-defaults.toml
+curl -sSLf "$BASE_URL/ruff-defaults.toml" -o ruff-defaults.toml
 echo "  → ruff-defaults.toml"
 
 if [ ! -f ".pre-commit-config.yaml" ]; then
-    curl -sSL "$BASE_URL/.pre-commit-config.example.yaml" -o .pre-commit-config.yaml
+    curl -sSLf "$BASE_URL/.pre-commit-config.example.yaml" -o .pre-commit-config.yaml
     echo "  → .pre-commit-config.yaml (starter config)"
 else
     echo "  → .pre-commit-config.yaml already exists — skipping"

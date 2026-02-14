@@ -23,7 +23,7 @@ format:
 	ruff format .
 
 update:
-	curl -sSL "$(BASELINE_REPO)/ruff-defaults.toml" -o ruff-defaults.toml
+	curl -sSLf "$(BASELINE_REPO)/ruff-defaults.toml" -o ruff-defaults.toml
 	@echo "Updated ruff-defaults.toml — review changes with: git diff ruff-defaults.toml"
 
 pre-commit:
