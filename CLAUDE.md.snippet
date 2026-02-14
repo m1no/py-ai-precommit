@@ -1,0 +1,29 @@
+# Python Code Quality (paste into your project's CLAUDE.md)
+
+## Linting and Formatting
+
+This project uses a shared pre-commit baseline from
+https://github.com/m1no/py-ai-precommit with ruff as the primary linter
+and formatter.
+
+After modifying any Python file:
+
+```bash
+ruff check --fix --show-fixes .
+ruff format .
+```
+
+**Never** use `--unsafe-fixes` without explicit approval.
+
+When ruff reports `F401` (unused import) or `F841` (unused variable), these are
+intentionally marked as unfixable. Evaluate whether the import/variable is truly
+unused or is an intentional re-export / placeholder before removing it.
+
+## Pre-commit
+
+Pre-commit hooks run on every commit. If a hook modifies files, the commit is
+blocked so you can review changes. Run manually:
+
+```bash
+pre-commit run --all-files
+```

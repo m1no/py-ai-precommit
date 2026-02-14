@@ -1,0 +1,47 @@
+# Shared ruff configuration for AI-agent-assisted Python development
+# https://github.com/m1no/py-ai-precommit
+#
+# Consuming repos extend this via:
+#
+#   [tool.ruff]
+#   extend = "ruff-defaults.toml"
+#
+# Local overrides (select, ignore, per-file-ignores) merge with — not
+# replace — the values defined here.
+
+line-length = 88
+target-version = "py312"        # Adjust to your minimum supported version
+
+[lint]
+select = [
+    "E", "W",       # pycodestyle errors and warnings
+    "F",            # Pyflakes
+    "UP",           # pyupgrade — modernize syntax to target-version
+    "B",            # flake8-bugbear — catches real bugs (mutable defaults, etc.)
+    "SIM",          # flake8-simplify
+    "I",            # isort — import sorting
+    "N",            # pep8-naming
+    "C4",           # flake8-comprehensions
+    "S",            # flake8-bandit — security checks
+    "RUF",          # Ruff-native rules (unused noqa, etc.)
+]
+ignore = [
+    "E501",         # Line length — let the formatter handle it
+]
+
+# Prevent auto-fix of rules that require human (or agent) judgment.
+# The agent sees the diagnostic and must decide explicitly.
+unfixable = [
+    "F401",         # Unused imports — may be intentional re-exports
+    "F841",         # Unused variables — may indicate incomplete logic
+]
+
+[lint.per-file-ignores]
+"tests/*"      = ["S101"]   # Allow assert in tests
+"__init__.py"  = ["F401"]   # Allow re-exports
+
+[lint.isort]
+known-first-party = []      # Override in consuming repo's pyproject.toml
+
+[format]
+quote-style = "double"

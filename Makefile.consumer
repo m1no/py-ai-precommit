@@ -1,0 +1,30 @@
+# Makefile — drop into consuming repos alongside ruff-defaults.toml
+#
+# Usage:
+#   make lint          Check lint + formatting (no changes)
+#   make fix           Auto-fix lint issues + reformat
+#   make format        Reformat only
+#   make update        Re-fetch shared configs from py-ai-precommit
+#   make pre-commit    Run all pre-commit hooks against all files
+
+BASELINE_REPO ?= https://raw.githubusercontent.com/m1no/py-ai-precommit/main
+
+.PHONY: lint fix format update pre-commit
+
+lint:
+	ruff check .
+	ruff format --check .
+
+fix:
+	ruff check --fix --show-fixes .
+	ruff format .
+
+format:
+	ruff format .
+
+update:
+	curl -sSLf "$(BASELINE_REPO)/ruff-defaults.toml" -o ruff-defaults.toml
+	@echo "Updated ruff-defaults.toml — review changes with: git diff ruff-defaults.toml"
+
+pre-commit:
+	pre-commit run --all-files
