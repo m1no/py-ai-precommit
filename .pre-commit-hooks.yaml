@@ -1,7 +1,7 @@
 # Hook definitions for https://pre-commit.com
 # Consuming repos add this to .pre-commit-config.yaml:
 #
-#   - repo: https://github.com/m1n0/py-ai-precommit
+#   - repo: https://github.com/m1no/py-ai-precommit
 #     rev: v1.0.0
 #     hooks:
 #       - id: ruff-check

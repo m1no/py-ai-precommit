@@ -5,13 +5,13 @@
 # into the repo root, and wires the extend directive into pyproject.toml.
 #
 # Usage:
-#   curl -sSL https://raw.githubusercontent.com/m1n0/py-ai-precommit/main/bootstrap.sh | bash
+#   curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/bootstrap.sh | bash
 #
 # Or from a local clone:
 #   ./bootstrap.sh
 set -euo pipefail
 
-BASE_URL="https://raw.githubusercontent.com/m1n0/py-ai-precommit/main"
+BASE_URL="https://raw.githubusercontent.com/m1no/py-ai-precommit/main"
 PYPROJECT="pyproject.toml"
 
 # ── Download shared configs ──────────────────────────────────────────────────

@@ -7,7 +7,7 @@
 #   make update        Re-fetch shared configs from py-ai-precommit
 #   make pre-commit    Run all pre-commit hooks against all files
 
-BASELINE_REPO ?= https://raw.githubusercontent.com/m1n0/py-ai-precommit/main
+BASELINE_REPO ?= https://raw.githubusercontent.com/m1no/py-ai-precommit/main
 
 .PHONY: lint fix format update pre-commit
 

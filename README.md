@@ -23,7 +23,7 @@ inconsistent formatting, and security footguns.
 Run the bootstrap script in any Python repo:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/m1n0/py-ai-precommit/main/bootstrap.sh | bash
+curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/bootstrap.sh | bash
 ```
 
 This downloads `ruff-defaults.toml`, creates a starter
@@ -65,7 +65,7 @@ repos:
 Then fetch the shared config and wire it into your `pyproject.toml`:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/m1n0/py-ai-precommit/main/ruff-defaults.toml -o ruff-defaults.toml
+curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/ruff-defaults.toml -o ruff-defaults.toml
 ```
 
 That's it. The ruff hooks respect whatever config ruff finds in
@@ -110,7 +110,7 @@ When this repo publishes new defaults, pull them into consuming repos:
 make -f Makefile.consumer update
 
 # Or directly
-curl -sSL https://raw.githubusercontent.com/m1n0/py-ai-precommit/main/ruff-defaults.toml -o ruff-defaults.toml
+curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/ruff-defaults.toml -o ruff-defaults.toml
 ```
 
 Review the diff, run `pre-commit run --all-files` to see what changed, and

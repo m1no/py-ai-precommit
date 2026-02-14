@@ -1,5 +1,5 @@
 # Shared ruff configuration for AI-agent-assisted Python development
-# https://github.com/m1n0/py-ai-precommit
+# https://github.com/m1no/py-ai-precommit
 #
 # Consuming repos extend this via:
 #
