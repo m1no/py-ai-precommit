@@ -1,0 +1,32 @@
+# .pre-commit-config.example.yaml
+#
+# Recommended pre-commit baseline for Python projects using AI coding agents.
+# Copy to .pre-commit-config.yaml and adjust to your needs.
+
+repos:
+  # ── General file hygiene ───────────────────────────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: debug-statements
+
+  # ── Ruff: lint then format (order matters when --fix is used) ──────────────
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.1
+    hooks:
+      - id: ruff-check
+        args: [--fix, --exit-non-zero-on-fix, --show-fixes]
+      - id: ruff-format
+
+  # ── Optional: type checking (uncomment and add your dependencies) ──────────
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.14.1
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies: []

@@ -1,0 +1,27 @@
+# Hook definitions for https://pre-commit.com
+# Consuming repos add this to .pre-commit-config.yaml:
+#
+#   - repo: https://github.com/m1n0/py-ai-precommit
+#     rev: v1.0.0
+#     hooks:
+#       - id: ruff-check
+#       - id: ruff-format
+
+- id: ruff-check
+  name: ruff-check (shared config)
+  language: python
+  types_or: [python, pyi]
+  require_serial: true
+  entry: ruff check --force-exclude
+  args: [--fix, --exit-non-zero-on-fix, --show-fixes]
+  additional_dependencies: ["ruff>=0.15.0"]
+  minimum_pre_commit_version: "2.9.2"
+
+- id: ruff-format
+  name: ruff-format (shared config)
+  language: python
+  types_or: [python, pyi]
+  require_serial: true
+  entry: ruff format --force-exclude
+  additional_dependencies: ["ruff>=0.15.0"]
+  minimum_pre_commit_version: "2.9.2"
