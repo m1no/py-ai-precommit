@@ -48,30 +48,37 @@ pre-commit install
 ## Adding to a repo with existing pre-commit hooks
 
 If the repo already has a `.pre-commit-config.yaml`, the bootstrap script
-leaves it untouched. Add the ruff hooks alongside your existing ones:
+leaves it untouched. Add this repo as a pre-commit hook source alongside
+your existing ones:
 
 ```yaml
 repos:
   # ... your existing hooks ...
 
-  # Ruff: lint then format (order matters when --fix is used)
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.1
+  - repo: https://github.com/m1no/py-ai-precommit
+    rev: v1.0.0
     hooks:
       - id: ruff-check
-        args: [--fix, --exit-non-zero-on-fix, --show-fixes]
       - id: ruff-format
+      - id: mypy          # optional — remove if not needed
 ```
 
-Then fetch the shared config and wire it into your `pyproject.toml`:
+The hooks bundle their own dependencies and args, so no extra
+configuration is required beyond the `extend` directive in your
+`pyproject.toml`:
+
+```toml
+[tool.ruff]
+extend = "ruff-defaults.toml"
+```
+
+Fetch `ruff-defaults.toml` if you haven't already:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/m1no/py-ai-precommit/main/ruff-defaults.toml -o ruff-defaults.toml
 ```
 
-That's it. The ruff hooks respect whatever config ruff finds in
-`pyproject.toml`, which in turn extends `ruff-defaults.toml`. Your
-existing hooks keep running exactly as before.
+Your existing hooks keep running exactly as before.
 
 ## Recommended hook ordering
 
