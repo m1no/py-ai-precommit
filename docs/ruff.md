@@ -136,15 +136,11 @@ extend-ignore = ["N802"]           # Allow non-lowercase function names
 known-first-party = ["myproject"]
 ```
 
-## Claude Code PostToolUse hook
+## Claude Code edit hook
 
-For real-time lint feedback during agent sessions, the community
-`ruff-claude-hook` package runs ruff automatically after every file edit
-and feeds errors back to the agent:
-
-```bash
-pip install ruff-claude-hook
-```
+For real-time lint feedback during agent sessions, you can configure Claude
+Code to run pre-commit checks automatically after every file edit using a
+PostToolUse hook.
 
 In `.claude/settings.json`:
 
@@ -153,12 +149,15 @@ In `.claude/settings.json`:
   "hooks": {
     "PostToolUse": [{
       "matcher": "Edit",
-      "hooks": [{"type": "command", "command": "ruff-claude-hook"}]
+      "hooks": [{
+        "type": "command",
+        "command": "pre-commit run --files ${filePaths}"
+      }]
     }]
   }
 }
 ```
 
-This creates a tight correction loop where the agent reads the lint error,
-opens the file, and fixes the issue within the same context window —
-significantly more effective than catching issues only at commit time.
+This runs the pre-commit checks (including ruff) on edited files without
+creating a commit, giving the agent immediate feedback that it can act on
+within the same context window.
