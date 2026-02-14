@@ -25,3 +25,9 @@
   entry: ruff format --force-exclude
   additional_dependencies: ["ruff>=0.15.0"]
   minimum_pre_commit_version: "2.9.2"
+
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.14.1
+  hooks:
+    - id: mypy
+      additional_dependencies: []
