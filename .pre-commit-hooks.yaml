@@ -14,7 +14,7 @@
   require_serial: true
   entry: ruff check --force-exclude
   args: [--fix, --exit-non-zero-on-fix, --show-fixes]
-  additional_dependencies: ["ruff>=0.15.0"]
+  additional_dependencies: ["ruff>=0.15.1"]
   minimum_pre_commit_version: "2.9.2"
 
 - id: ruff-format
@@ -23,7 +23,7 @@
   types_or: [python, pyi]
   require_serial: true
   entry: ruff format --force-exclude
-  additional_dependencies: ["ruff>=0.15.0"]
+  additional_dependencies: ["ruff>=0.15.1"]
   minimum_pre_commit_version: "2.9.2"
 
 - repo: https://github.com/pre-commit/mirrors-mypy
