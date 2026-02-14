@@ -6,6 +6,7 @@
 #     hooks:
 #       - id: ruff-check
 #       - id: ruff-format
+#       - id: mypy
 
 - id: ruff-check
   name: ruff-check (shared config)
@@ -26,8 +27,11 @@
   additional_dependencies: ["ruff>=0.15.1"]
   minimum_pre_commit_version: "2.9.2"
 
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.14.1
-  hooks:
-    - id: mypy
-      additional_dependencies: []
+- id: mypy
+  name: mypy (shared config)
+  language: python
+  types_or: [python, pyi]
+  require_serial: true
+  entry: mypy
+  additional_dependencies: ["mypy>=1.14.0"]
+  minimum_pre_commit_version: "2.9.2"
