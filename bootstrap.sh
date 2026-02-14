@@ -25,11 +25,29 @@ curl -sSLf "$BASE_URL/Makefile.consumer" -o Makefile.consumer
 echo "  → Makefile.consumer"
 
 if [ ! -f ".pre-commit-config.yaml" ]; then
-    curl -sSLf "$BASE_URL/.pre-commit-config.example.yaml" -o .pre-commit-config.yaml
+    cat > .pre-commit-config.yaml <<'YAML'
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: debug-statements
+
+  - repo: https://github.com/m1no/py-ai-precommit
+    rev: v1.0.0
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+      # - id: mypy
+YAML
     echo "  → .pre-commit-config.yaml (starter config)"
 else
     echo "  → .pre-commit-config.yaml already exists — skipping"
-    echo "    See .pre-commit-config.example.yaml in the repo for the recommended hook setup."
 fi
 
 # ── Wire the extend directive into pyproject.toml ────────────────────────────
