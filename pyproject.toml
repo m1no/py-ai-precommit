@@ -1,0 +1,26 @@
+[project]
+name = "py-ai-precommit"
+version = "1.0.0"
+description = "Pre-commit baseline for Python projects that use AI coding agents"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [
+    { name = "mino" },
+]
+dependencies = [
+    "ruff>=0.15.1",
+    "mypy>=1.14.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/m1no/py-ai-precommit"
+Repository = "https://github.com/m1no/py-ai-precommit"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0",
+]
+
+[tool.ruff]
+extend = "ruff-defaults.toml"
