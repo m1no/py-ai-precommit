@@ -12,7 +12,6 @@ inconsistent formatting, and security footguns.
 |------|---------|
 | `ruff-defaults.toml` | Shared ruff lint + format config with agent-safe defaults |
 | `.pre-commit-hooks.yaml` | Hook definitions so this repo works as a pre-commit source |
-| `.pre-commit-config.example.yaml` | Starter config for new repos (file hygiene + ruff + optional mypy) |
 | `bootstrap.sh` | One-liner setup for consuming repos |
 | `Makefile.consumer` | Drop-in Makefile with lint / fix / update targets |
 | `CLAUDE.md.snippet` | Paste into your CLAUDE.md for agent integration |
@@ -48,24 +47,10 @@ pre-commit install
 ## Adding to a repo with existing pre-commit hooks
 
 If the repo already has a `.pre-commit-config.yaml`, the bootstrap script
-leaves it untouched. Add this repo as a pre-commit hook source alongside
-your existing ones:
-
-```yaml
-repos:
-  # ... your existing hooks ...
-
-  - repo: https://github.com/m1no/py-ai-precommit
-    rev: v1.0.0
-    hooks:
-      - id: ruff-check
-      - id: ruff-format
-      - id: mypy          # optional — remove if not needed
-```
-
-The hooks bundle their own dependencies and args, so no extra
-configuration is required beyond the `extend` directive in your
-`pyproject.toml`:
+leaves it untouched. Add this repo as a hook source in your config
+(see `.pre-commit-hooks.yaml` for the available hook IDs). The hooks
+bundle their own dependencies and args, so no extra configuration is
+required beyond the `extend` directive in your `pyproject.toml`:
 
 ```toml
 [tool.ruff]
@@ -84,8 +69,7 @@ Your existing hooks keep running exactly as before.
 
 Pre-commit runs hooks top-to-bottom within each repo block. The suggested
 order is fast file-level checks first, then ruff (lint before format), and
-slow tools like type checkers last. See `.pre-commit-config.example.yaml`
-for a complete example.
+slow tools like type checkers last.
 
 ## Per-project overrides
 
